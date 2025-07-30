@@ -1,11 +1,11 @@
 grade_weights = {
-    "A": 8,
-    "AB": 7,
-    "B": 6,
-    "BC": 5,
-    "C": 4,
-    "D": 2,
-    "E": 0
+    "A": 4.0,
+    "AB": 3.5,
+    "B": 3.0,
+    "BC": 2.5,
+    "C": 2.0,
+    "D": 1.0,
+    "E": 0.0
 }
 
 # Function to calculate GPA
@@ -56,3 +56,16 @@ for name, credits, grade in course_list:
     print(f"{name} ({credits} SKS) - Grade: {grade}")
 
 print("\nYour GPA is:", gpa)
+
+if gpa >= 3.5:
+    category = "Excellent"
+elif gpa >= 3.0:
+    category = "Very Good"
+elif gpa >= 2.5:
+    category = "Good"
+elif gpa >= 2.0:
+    category = "Fair"
+else:
+    category = "Poor"
+
+print("GPA Category:", category)
