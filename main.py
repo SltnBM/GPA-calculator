@@ -1,4 +1,3 @@
-# Grade to weight mapping
 grade_weights = {
     "A": 8,
     "AB": 7,
@@ -27,12 +26,15 @@ def calculate_gpa(courses):
         return 0.0
     return round(total_weighted_score / total_credits, 2)
 
-course_list = [
-    ("Mathematics", 3, "A"),
-    ("Programming", 4, "AB"),
-    ("Networking", 2, "B"),
-    ("Database", 3, "BC"),
-]
+course_list = []
+num_courses = int(input("How many courses? "))
+
+for i in range(num_courses):
+    print(f"\nCourse {i+1}")
+    name = input("Course name: ")
+    credits = int(input("Number of credits (SKS): "))
+    grade = input("Grade (A, AB, B, BC, C, D, E): ")
+    course_list.append((name, credits, grade))
 
 gpa = calculate_gpa(course_list)
-print("Your GPA is:", gpa)
+print("\nYour GPA is:", gpa)
