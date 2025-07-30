@@ -32,9 +32,23 @@ num_courses = int(input("How many courses? "))
 for i in range(num_courses):
     print(f"\nCourse {i+1}")
     name = input("Course name: ")
-    credits = int(input("Number of credits (SKS): "))
-    grade = input("Grade (A, AB, B, BC, C, D, E): ")
-    course_list.append((name, credits, grade))
+    while True:
+        try:
+            credits = int(input("Number of credits (SKS): "))
+            if credits <= 0:
+                print("Credits must be a positive number.")
+                continue
+            break
+        except ValueError:
+            print("Please enter a valid number for credits.")
+
+    while True:
+        grade = input("Grade (A, AB, B, BC, C, D, E): ").upper()
+        if grade in grade_weights:
+            break
+        print("Invalid grade. Please enter one of: A, AB, B, BC, C, D, E.")
+
+        course_list.append((name, credits, grade))
 
 gpa = calculate_gpa(course_list)
 print("\nYour GPA is:", gpa)
