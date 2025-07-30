@@ -48,7 +48,11 @@ for i in range(num_courses):
             break
         print("Invalid grade. Please enter one of: A, AB, B, BC, C, D, E.")
 
-        course_list.append((name, credits, grade))
+    course_list.append((name, credits, grade))
 
 gpa = calculate_gpa(course_list)
+print("\n--- Course Summary ---")
+for name, credits, grade in course_list:
+    print(f"{name} ({credits} SKS) - Grade: {grade}")
+
 print("\nYour GPA is:", gpa)
