@@ -56,7 +56,7 @@ def main():
             name = input("Course name: ").strip()
             while True:
                 try:
-                    credits_raw = input("Number of credits (SKS): ").strip()
+                    credits_raw = input("Number of credits: ").strip()
                     credits = float(credits_raw)
                     if credits <= 0:
                         print("Credits must be a positive number.")
@@ -77,7 +77,7 @@ def main():
     gpa = calculate_gpa(course_list)
     print("\n--- Course Summary ---")
     for name, credits, grade in course_list:
-        print(f"{name} ({credits} SKS) - Grade: {grade}")
+        print(f"{name} ({credits} credits) - Grade: {grade}")
 
     print("\nYour GPA is:", gpa)
     print("GPA Category:", get_category(gpa))
