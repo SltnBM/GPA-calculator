@@ -1,9 +1,9 @@
 # 🎓 GPA Calculator CLI
-A simple Python CLI tool to calculate GPA (IPK) based on course credits (SKS) and grades, with support for early exit via `Ctrl+C`.
+A simple Python CLI tool to calculate GPA based on course credits and grades.
 
 ## ✨ Features
-- 📝 Input course name, SKS (credits), and grade (A, AB, B, BC, C, D, E)
-- ➗ Weighted GPA calculation based on SKS
+- 📝 Input course name, credits, and grade (A, AB, B, BC, C, D, E)
+- ➗ Weighted GPA calculation based on course credits
 - 🏷️ GPA classification: Excellent / Very Good / Good / Fair / Poor
 - ❌ Early exit with `Ctrl+C` showing partial summary
 - ⚡ Lightweight CLI, zero external dependencies
@@ -23,7 +23,7 @@ python main.py
 ```
 4. 🖊️ Follow prompts:
    - Enter number of courses
-   - For each course: name, SKS (can be decimal), and grade
+   - For each course: name, credits (can be decimal), and grade
    - Press `Ctrl+C` at any time to stop early and still get the summary
 
 ## 📊 Grade Scale
@@ -43,23 +43,23 @@ How many courses? 3
 
 Course 1
 Course name: Calculus
-Number of credits (SKS): 3
+Number of credits: 3
 Grade (A, AB, B, BC, C, D, E): A
 
 Course 2
 Course name: Algorithm
-Number of credits (SKS): 4
+Number of credits: 4
 Grade (A, AB, B, BC, C, D, E): B
 
 Course 3
 Course name: Database
-Number of credits (SKS): 2
+Number of credits: 2
 Grade (A, AB, B, BC, C, D, E): AB
 
 --- Course Summary ---
-Calculus (3.0 SKS) - Grade: A
-Algorithm (4.0 SKS) - Grade: B
-Database (2.0 SKS) - Grade: AB
+Calculus (3.0 credits) - Grade: A
+Algorithm (4.0 credits) - Grade: B
+Database (2.0 credits) - Grade: AB
 
 Your GPA is: 3.35
 GPA Category: Very Good
