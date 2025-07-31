@@ -26,6 +26,17 @@ python main.py
    - For each course: name, SKS (can be decimal), and grade
    - Press `Ctrl+C` at any time to stop early and still get the summary
 
+## Grade Scale
+| Grade | Weight |
+|-------|--------|
+| A     | 4.0    |
+| AB    | 3.5    |
+| B     | 3.0    |
+| BC    | 2.5    |
+| C     | 2.0    |
+| D     | 1.0    |
+| E     | 0.0    |
+
 ## Example Session
 ```bash
 How many courses? 3
