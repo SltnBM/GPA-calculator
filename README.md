@@ -5,7 +5,7 @@ A simple Python CLI tool to calculate GPA (IPK) based on course credits (SKS) an
 - 📝 Input course name, SKS (credits), and grade (A, AB, B, BC, C, D, E)
 - ➗ Weighted GPA calculation based on SKS
 - 🏷️ GPA classification: Excellent / Very Good / Good / Fair / Poor
-- ❌ Graceful early exit with `Ctrl+C` during data entry — shows partial summary and computes GPA so far
+- ❌ Early exit with `Ctrl+C` showing partial summary
 - ⚡ Lightweight CLI, zero external dependencies
 
 ## 🚀 How to Use
@@ -70,3 +70,6 @@ Feel free to open issues or submit pull requests for improvements or bug fixes.
 
 ## 📬 Connect With Me
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Sultan%20Badra-blue?logo=linkedin\&logoColor=white\&style=flat-square)](https://www.linkedin.com/in/sultan-badra)
+
+## 📜 License
+Feel Free to use, modify, and share for personal and educational purposes.
