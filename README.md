@@ -37,6 +37,16 @@ python main.py
 | D     | 1.0    |
 | E     | 0.0    |
 
+## 📂 Example JSON Template
+```json
+[
+  { "name": "Calculus", "credits": 3, "grade": "A" },
+  { "name": "Physics", "credits": 4, "grade": "BC" },
+  { "name": "Programming Fundamentals", "credits": 3, "grade": "AB" }
+]
+```
+
+
 ## 💻 Example Session
 ```bash
 How many courses? 3
