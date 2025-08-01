@@ -79,6 +79,9 @@ def main():
     for name, credits, grade in course_list:
         print(f"{name} ({credits} credits) - Grade: {grade}")
 
+    total_credits = sum(credits for _, credits, _ in course_list)
+    print(f"\nTotal Credits: {total_credits}")
+
     print("\nYour GPA is:", gpa)
     print("GPA Category:", get_category(gpa))
 
