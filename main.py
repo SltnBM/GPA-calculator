@@ -1,5 +1,6 @@
 import json
 import sys
+import os
 
 grade_weights = {
     "A": 4.0,
@@ -55,6 +56,20 @@ def print_summary(course_list):
     print(f"\nTotal Credits: {total_credits}")
     print("Your GPA is:", gpa)
     print("GPA Category:", get_category(gpa))
+
+def create_json_template(path):
+    sample = [
+        { "name": "Calculus", "credits": 3, "grade": "A" },
+        { "name": "Physics", "credits": 4, "grade": "BC" },
+        { "name": "English Literature", "credits": 2, "grade": "B" },
+        { "name": "Programming Fundamentals", "credits": 3, "grade": "AB" }
+    ]
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(sample, f, indent=2)
+        print(f"Sample template created at '{path}'. You can edit it and rerun.")
+    except IOError as e:
+        print(f"Failed to write template: {e}")
 
 def interactive_input():
     course_list = []
@@ -132,6 +147,12 @@ def main():
             course_list = load_from_json_file(path)
             if course_list:
                 break
+            if not os.path.exists(path):
+                create = safe_input(f"File '{path}' not found. Create sample template here? (y/n): ").strip().lower()
+                if create == "y":
+                    create_json_template(path)
+                    print("Edit the file then run again.")
+                    return
             retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
             if retry != "y":
                 print("Switching to manual input.")
