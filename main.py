@@ -118,8 +118,13 @@ def main():
     print("Choose input method:")
     print("1) JSON file")
     print("2) Manual input")
-    choice = safe_input("Enter 1 or 2: ").strip()
     course_list = []
+
+    while True:
+        choice = safe_input("Enter 1 or 2: ").strip()
+        if choice in ("1", "2"):
+            break
+        print("Invalid selection. Please enter 1 or 2.")
 
     if choice == "1":
         while True:
