@@ -46,34 +46,6 @@ python main.py
 ]
 ```
 
-## 📄 Using JSON Template
-Instead of manual input, you can use a JSON file like the example above to calculate your GPA automatically.
-
-1️⃣ **Edit the Template**  
-A ready-to-use `courses.json` file is already provided in the repository. You can edit it to match your own courses, credits, and grades.
-
-2️⃣ **Run the Script** 
-   ```bash
-   python main.py
-   ```
-
-3️⃣ **Choose JSON Option** 
-   ```bash
-   Choose input method:
-   1) JSON file
-   2) Manual input
-   Enter 1 or 2: 1
-   Path to JSON file: courses.json
-   ```
-
-4️⃣ **Get Results**  
-4. If the file is valid, the program will read the data and display the GPA summary immediately.
-
-💡 **Tips**:
-- 🆓 The file name can be anything, as long as it ends with `.json` and follows the correct format.
-- ⚠️ If the file doesn’t exist, the program will offer to create a sample template for you.
-- 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
-
 ## 💻 Example Session
 ```bash
 How many courses? 3
@@ -101,6 +73,34 @@ Database (2.0 credits) - Grade: AB
 Your GPA is: 3.35
 GPA Category: Very Good
 ```
+
+## 📄 Using JSON Template
+Instead of manual input, you can use a JSON file like the example above to calculate your GPA automatically.
+
+1️⃣ **Edit the Template**  
+A ready-to-use `courses.json` file is already provided in the repository. You can edit it to match your own courses, credits, and grades.
+
+2️⃣ **Run the Script** 
+   ```bash
+   python main.py
+   ```
+
+3️⃣ **Choose JSON Option** 
+   ```bash
+   Choose input method:
+   1) JSON file
+   2) Manual input
+   Enter 1 or 2: 1
+   Path to JSON file: courses.json
+   ```
+
+4️⃣ **Get Results**  
+If the file is valid, the program will read the data and display the GPA summary immediately.
+
+💡 **Tips**:
+- 🆓 The file name can be anything, as long as it ends with `.json` and follows the correct format.
+- ⚠️ If the file doesn’t exist, the program will offer to create a sample template for you.
+- 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
 ## 🤝 Contributing
 Feel free to open issues or submit pull requests for improvements or bug fixes.
