@@ -64,6 +64,11 @@ Instead of manual input, you can use a JSON file like the example above to calcu
    ```
 4. If the file is valid, the program will read the data and display the GPA summary immediately.
 
+💡 **Tips**:
+- The file name can be anything, as long as it ends with `.json` and follows the correct format.
+- If the file doesn’t exist, the program will offer to create a sample template for you.
+0 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
+
 ## 💻 Example Session
 ```bash
 How many courses? 3
