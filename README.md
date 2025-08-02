@@ -46,6 +46,23 @@ python main.py
 ]
 ```
 
+## Using JSON Template
+Instead of manual input, you can use a JSON file like the example above to calculate your GPA automatically.
+
+1. Create a `courses.json` file in the project folder and fill it with your courses, credits, and grades in the same format.
+2. Run the script
+   ```bash
+   python main.py
+   ```
+3. Choose the JSON file option when prompted:
+   ```bash
+   Choose input method:
+   1) JSON file
+   2) Manual input
+   Enter 1 or 2: 1
+   Path to JSON file: courses.json
+   ```
+4. If the file is valid, the program will read the data and display the GPA summary immediately.
 
 ## 💻 Example Session
 ```bash
