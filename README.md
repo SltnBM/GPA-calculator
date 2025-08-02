@@ -70,9 +70,9 @@ A ready-to-use `courses.json` file is already provided in the repository. You ca
 4. If the file is valid, the program will read the data and display the GPA summary immediately.
 
 💡 **Tips**:
-- The file name can be anything, as long as it ends with `.json` and follows the correct format.
-- If the file doesn’t exist, the program will offer to create a sample template for you.
-- Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
+- 🆓 The file name can be anything, as long as it ends with `.json` and follows the correct format.
+- ⚠️ If the file doesn’t exist, the program will offer to create a sample template for you.
+- 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
 ## 💻 Example Session
 ```bash
