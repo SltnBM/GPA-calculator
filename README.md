@@ -102,7 +102,7 @@ If the file is valid, the program will read the data and display the GPA summary
 - ⚠️ If the file doesn’t exist, the program will offer to create a sample template for you.
 - 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
-## GPA Classification
+## 🎯 GPA Classification
 
 The following table shows the numeric ranges used to classify the calculated GPA:
 
