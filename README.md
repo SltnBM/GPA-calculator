@@ -102,6 +102,20 @@ If the file is valid, the program will read the data and display the GPA summary
 - ⚠️ If the file doesn’t exist, the program will offer to create a sample template for you.
 - 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
+## GPA Classification
+
+The following table shows the numeric ranges used to classify the calculated GPA:
+
+| Category  | GPA Range (inclusive) |
+| --------- | --------------------- |
+| Excellent | 3.75 – 4.00           |
+| Very Good | 3.25 – 3.74           |
+| Good      | 2.50 – 3.24           |
+| Fair      | 2.00 – 2.49           |
+| Poor      | 0.00 – 1.99           |
+
+> **Note:** GPA is calculated based on weighted credits. The classification is determined using the actual GPA value before rounding, to ensure accuracy.
+
 ## 🤝 Contributing
 Feel free to open issues or submit pull requests for improvements or bug fixes.
 
