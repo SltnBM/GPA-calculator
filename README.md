@@ -76,6 +76,11 @@ Grade (A, AB, B, BC, C, D, E): AB
 Total Credits: 9.0
 Your GPA is: 3.44
 GPA Category: Very Good
+
+Save result to file? (y/n): y
+Format (txt/json): txt
+Destination file [gpa_summary.txt]: gpa_summary_example.txt
+Exported summary to TXT file: gpa_summary_example.txt
 ```
 
 ## 📄 Using JSON Template
