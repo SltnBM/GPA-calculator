@@ -140,23 +140,41 @@ def create_json_template(path):
     except IOError as e:
         console.print(f"[red]Failed to write template: {e}[/]")
 
-def interactive_input():
+def interactive_input(max_courses=100):
     course_list = []
-    try:
-        num_courses = int(safe_input("How many courses? ").strip())
-        if num_courses <= 0:
-            console.print("[red]Number of courses must be at least 1. Exiting.[/]")
+
+    while True:
+        try:
+            raw = safe_input(f"How many courses?: ").strip()
+        except EOFError:
+            console.print("\n[red]Input closed. Exiting.[/]")
             return []
-    except ValueError:
-        console.print("[red]Invalid number. Exiting.[/]")
-        return []
+        if not raw:
+            console.print("[yellow]Please enter a number.[/]")
+            continue
+        try:
+            num_courses = int(raw)
+            if num_courses < 1 or num_courses > max_courses:
+                console.print(f"[yellow]Enter a number between 1 and {max_courses}.[/]")
+                continue
+            break
+        except ValueError:
+            console.print("[yellow]Invalid number. Please enter an integer.[/]")
 
     for i in range(num_courses):
         console.print(f"\n[bold]Course {i+1}[/]")
         name = safe_input("Course name: ").strip()
+        while not name:
+            console.print("[yellow]Course name cannot be empty.[/]")
+            name = safe_input("Course name: ").strip()
+
         while True:
             try:
                 credits_raw = safe_input("Number of credits: ").strip()
+            except EOFError:
+                console.print("\n[red]Input closed unexpectedly. Exiting.[/]")
+                return []
+            try:
                 credits = float(credits_raw)
                 if credits <= 0:
                     console.print("[yellow]Credits must be a positive number.[/]")
@@ -164,14 +182,17 @@ def interactive_input():
                 break
             except ValueError:
                 console.print("[yellow]Please enter a valid number for credits.[/]")
+
         while True:
             grade = safe_input("Grade (A, AB, B, BC, C, D, E): ").strip().upper()
             if grade in grade_weights:
                 break
             console.print("[yellow]Invalid grade. Please enter one of: A, AB, B, BC, C, D, E.[/]")
+
         course_list.append((name, credits, grade))
 
     return course_list
+
 
 def load_from_json_file(path):
     try:
