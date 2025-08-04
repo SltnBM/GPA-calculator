@@ -43,6 +43,10 @@ python main.py
 
 ## 💻 Example Session
 ```bash
+Choose input method:
+1) JSON file
+2) Manual input
+Enter 1 or 2: 2        
 How many courses? 3
 
 Course 1
@@ -61,11 +65,16 @@ Number of credits: 2
 Grade (A, AB, B, BC, C, D, E): AB
 
 --- Course Summary ---
-Calculus (3.0 credits) - Grade: A
-Algorithm (4.0 credits) - Grade: B
-Database (2.0 credits) - Grade: AB
 
-Your GPA is: 3.35
+┏━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━┓
+┃ Course Name ┃ Credits ┃ Grade ┃
+┡━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━┩
+│ Calculus    │     3.0 │   A   │
+│ Algorithm   │     4.0 │   B   │
+│ Database    │     2.0 │  AB   │
+└─────────────┴─────────┴───────┘
+Total Credits: 9.0
+Your GPA is: 3.44
 GPA Category: Very Good
 ```
 
