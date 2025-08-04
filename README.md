@@ -41,15 +41,6 @@ python main.py
 | D     | 1.0    |
 | E     | 0.0    |
 
-## 📂 Example JSON Template
-```json
-[
-  { "name": "Calculus", "credits": 3, "grade": "A" },
-  { "name": "Physics", "credits": 4, "grade": "BC" },
-  { "name": "Programming Fundamentals", "credits": 3, "grade": "AB" }
-]
-```
-
 ## 💻 Example Session
 ```bash
 How many courses? 3
@@ -105,6 +96,15 @@ If the file is valid, the program will read the data and display the GPA summary
 - 🆓 The file name can be anything, as long as it ends with `.json` and follows the correct format.
 - ⚠️ If the file doesn’t exist, the program will offer to create a sample template for you.
 - 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
+
+## 📂 Example JSON Template
+```json
+[
+  { "name": "Calculus", "credits": 3, "grade": "A" },
+  { "name": "Physics", "credits": 4, "grade": "BC" },
+  { "name": "Programming Fundamentals", "credits": 3, "grade": "AB" }
+]
+```
 
 ## 🎯 GPA Classification
 
