@@ -2,6 +2,13 @@ import json
 import sys
 import os
 
+from rich.console import Console
+from rich.table import Table
+from rich.text import Text
+from rich.prompt import Prompt
+
+console = Console()
+
 grade_weights = {
     "A": 4.0,
     "AB": 3.5,
@@ -16,7 +23,7 @@ def safe_input(prompt):
     try:
         return input(prompt)
     except KeyboardInterrupt:
-        print("\nExiting, Good bye.")
+        console.print("\nExiting, [bold red]Good bye.[/]")
         sys.exit(0)
 
 def calculate_gpa(courses):
@@ -26,7 +33,7 @@ def calculate_gpa(courses):
     for name, credits, grade in courses:
         weight = grade_weights.get(grade.upper(), None)
         if weight is None:
-            print(f"Invalid grade '{grade}' for course {name}. Skipping.")
+            console.print(f"[yellow]Invalid grade '{grade}' for course {name}. Skipping.[/]")
             continue
         total_credits += credits
         total_weighted_score += credits * weight
@@ -47,15 +54,43 @@ def get_category(gpa):
     else:
         return "Poor"
 
+def style_for_grade(grade):
+    grade = grade.upper()
+    if grade in ("A", "AB"):
+        return "bold green"
+    if grade in ("B",):
+        return "cyan"
+    if grade in ("BC", "C"):
+        return "yellow"
+    if grade in ("D", "E"):
+        return "red"
+    return ""
+
 def print_summary(course_list):
     gpa = calculate_gpa(course_list)
-    print("\n--- Course Summary ---")
+    console.print("\n[bold underline blue]--- Course Summary ---[/]\n")
+    table = Table(show_header=True, header_style="bold magenta")
+    table.add_column("Course Name", style="white")
+    table.add_column("Credits", justify="right")
+    table.add_column("Grade", justify="center")
+
     for name, credits, grade in course_list:
-        print(f"{name} ({credits} credits) - Grade: {grade}")
+        table.add_row(name, str(credits), f"[{style_for_grade(grade)}]{grade}[/{style_for_grade(grade)}]")
+
     total_credits = sum(credits for _, credits, _ in course_list)
-    print(f"\nTotal Credits: {total_credits}")
-    print("Your GPA is:", gpa)
-    print("GPA Category:", get_category(gpa))
+    console.print(table)
+    console.print(f"[bold]Total Credits:[/] {total_credits}")
+    # GPA with colored category
+    category = get_category(gpa)
+    gpa_style = {
+        "Excellent": "bold green",
+        "Very Good": "green",
+        "Good": "yellow",
+        "Fair": "bright_yellow",
+        "Poor": "bold red"
+    }.get(category, "white")
+    console.print(f"[bold]Your GPA is:[/] [{gpa_style}]{gpa}[/{gpa_style}]")
+    console.print(f"[bold]GPA Category:[/] [{gpa_style}]{category}[/{gpa_style}]")
 
 def create_json_template(path):
     sample = [
@@ -67,39 +102,39 @@ def create_json_template(path):
     try:
         with open(path, "w", encoding="utf-8") as f:
             json.dump(sample, f, indent=2)
-        print(f"Sample template created at '{path}'. You can edit it and rerun.")
+        console.print(f"[green]Sample template created at '{path}'. You can edit it and rerun.[/]")
     except IOError as e:
-        print(f"Failed to write template: {e}")
+        console.print(f"[red]Failed to write template: {e}[/]")
 
 def interactive_input():
     course_list = []
     try:
         num_courses = int(safe_input("How many courses? ").strip())
         if num_courses <= 0:
-            print("Number of courses must be at least 1. Exiting.")
+            console.print("[red]Number of courses must be at least 1. Exiting.[/]")
             return []
     except ValueError:
-        print("Invalid number. Exiting.")
+        console.print("[red]Invalid number. Exiting.[/]")
         return []
 
     for i in range(num_courses):
-        print(f"\nCourse {i+1}")
+        console.print(f"\n[bold]Course {i+1}[/]")
         name = safe_input("Course name: ").strip()
         while True:
             try:
                 credits_raw = safe_input("Number of credits: ").strip()
                 credits = float(credits_raw)
                 if credits <= 0:
-                    print("Credits must be a positive number.")
+                    console.print("[yellow]Credits must be a positive number.[/]")
                     continue
                 break
             except ValueError:
-                print("Please enter a valid number for credits.")
+                console.print("[yellow]Please enter a valid number for credits.[/]")
         while True:
             grade = safe_input("Grade (A, AB, B, BC, C, D, E): ").strip().upper()
             if grade in grade_weights:
                 break
-            print("Invalid grade. Please enter one of: A, AB, B, BC, C, D, E.")
+            console.print("[yellow]Invalid grade. Please enter one of: A, AB, B, BC, C, D, E.[/]")
         course_list.append((name, credits, grade))
 
     return course_list
@@ -117,29 +152,29 @@ def load_from_json_file(path):
                 credits = -1
             grade = entry.get("grade", "").strip().upper()
             if not name or credits <= 0 or grade not in grade_weights:
-                print(f"Skipping invalid entry: {entry}")
+                console.print(f"[yellow]Skipping invalid entry: {entry}[/]")
                 continue
             courses.append((name, credits, grade))
         return courses
     except FileNotFoundError:
-        print(f"File not found: {path}")
+        console.print(f"[red]File not found: {path}[/]")
     except json.JSONDecodeError as e:
-        print(f"JSON parse error: {e}")
+        console.print(f"[red]JSON parse error: {e}[/]")
     except IOError as e:
-        print(f"I/O error reading file: {e}")
+        console.print(f"[red]I/O error reading file: {e}[/]")
     return []
 
 def main():
-    print("Choose input method:")
-    print("1) JSON file")
-    print("2) Manual input")
+    console.print("[bold]Choose input method:[/]")
+    console.print("1) JSON file")
+    console.print("2) Manual input")
     course_list = []
 
     while True:
         choice = safe_input("Enter 1 or 2: ").strip()
         if choice in ("1", "2"):
             break
-        print("Invalid selection. Please enter 1 or 2.")
+        console.print("[yellow]Invalid selection. Please enter 1 or 2.[/]")
 
     if choice == "1":
         while True:
@@ -151,18 +186,18 @@ def main():
                 create = safe_input(f"File '{path}' not found. Create sample template here? (y/n): ").strip().lower()
                 if create == "y":
                     create_json_template(path)
-                    print("Edit the file then run again.")
+                    console.print("[blue]Edit the file then run again.[/]")
                     return
             retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
             if retry != "y":
-                print("Switching to manual input.")
+                console.print("[blue]Switching to manual input.[/]")
                 course_list = interactive_input()
                 break
     else:
         course_list = interactive_input()
 
     if not course_list:
-        print("No valid courses provided. Exiting.")
+        console.print("[red]No valid courses provided. Exiting.[/]")
         return
 
     print_summary(course_list)
@@ -171,5 +206,5 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\nExiting, Good bye.")
+        console.print("\nExiting, [bold red]Good bye.[/]")
         sys.exit(0)
