@@ -1,6 +1,7 @@
 import json
 import sys
 import os
+from datetime import datetime
 
 from rich.console import Console
 from rich.table import Table
@@ -80,7 +81,6 @@ def print_summary(course_list):
     total_credits = sum(credits for _, credits, _ in course_list)
     console.print(table)
     console.print(f"[bold]Total Credits:[/] {total_credits}")
-    # GPA with colored category
     category = get_category(gpa)
     gpa_style = {
         "Excellent": "bold green",
@@ -91,6 +91,40 @@ def print_summary(course_list):
     }.get(category, "white")
     console.print(f"[bold]Your GPA is:[/] [{gpa_style}]{gpa}[/{gpa_style}]")
     console.print(f"[bold]GPA Category:[/] [{gpa_style}]{category}[/{gpa_style}]")
+    return {
+        "gpa": gpa,
+        "category": category,
+        "total_credits": total_credits
+    }
+
+def export_results(course_list, summary, dest_path, fmt):
+    data = {
+        "generated_at": datetime.now().isoformat(),
+        "total_credits": summary["total_credits"],
+        "gpa": summary["gpa"],
+        "category": summary["category"],
+        "courses": [
+            {"name": name, "credits": credits, "grade": grade}
+            for name, credits, grade in course_list
+        ]
+    }
+    try:
+        if fmt == "json":
+            with open(dest_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2)
+            console.print(f"[green]Exported summary to JSON file: {dest_path}[/]")
+        else:  # txt
+            with open(dest_path, "w", encoding="utf-8") as f:
+                f.write("=== Course Summary ===\n")
+                for c in data["courses"]:
+                    f.write(f"{c['name']} | Credits: {c['credits']} | Grade: {c['grade']}\n")
+                f.write(f"\nTotal Credits: {data['total_credits']}\n")
+                f.write(f"GPA: {data['gpa']}\n")
+                f.write(f"Category: {data['category']}\n")
+                f.write(f"Generated at: {data['generated_at']}\n")
+            console.print(f"[green]Exported summary to TXT file: {dest_path}[/]")
+    except IOError as e:
+        console.print(f"[red]Failed to export: {e}[/]")
 
 def create_json_template(path):
     sample = [
@@ -200,7 +234,18 @@ def main():
         console.print("[red]No valid courses provided. Exiting.[/]")
         return
 
-    print_summary(course_list)
+    summary = print_summary(course_list)
+
+    export = safe_input("\nSave result to file? (y/n): ").strip().lower()
+    if export == "y":
+        fmt = ""
+        while fmt not in ("txt", "json"):
+            fmt = safe_input("Format (txt/json): ").strip().lower()
+        default_name = f"gpa_summary.{fmt}"
+        path = safe_input(f"Destination file [{default_name}]: ").strip()
+        if not path:
+            path = default_name
+        export_results(course_list, summary, path, fmt)
 
 if __name__ == "__main__":
     try:
