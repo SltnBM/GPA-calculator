@@ -6,7 +6,6 @@ from datetime import datetime
 from rich.console import Console
 from rich.table import Table
 from rich.text import Text
-from rich.prompt import Prompt
 
 console = Console()
 
@@ -128,10 +127,10 @@ def export_results(course_list, summary, dest_path, fmt):
 
 def create_json_template(path):
     sample = [
-        { "name": "Calculus", "credits": 3, "grade": "A" },
-        { "name": "Physics", "credits": 4, "grade": "BC" },
-        { "name": "English Literature", "credits": 2, "grade": "B" },
-        { "name": "Programming Fundamentals", "credits": 3, "grade": "AB" }
+        {"name": "Calculus", "credits": 3, "grade": "A"},
+        {"name": "Physics", "credits": 4, "grade": "BC"},
+        {"name": "English Literature", "credits": 2, "grade": "B"},
+        {"name": "Programming Fundamentals", "credits": 3, "grade": "AB"}
     ]
     try:
         with open(path, "w", encoding="utf-8") as f:
@@ -142,13 +141,8 @@ def create_json_template(path):
 
 def interactive_input(max_courses=100):
     course_list = []
-
     while True:
-        try:
-            raw = safe_input(f"How many courses?: ").strip()
-        except EOFError:
-            console.print("\n[red]Input closed. Exiting.[/]")
-            return []
+        raw = safe_input(f"How many courses?: ").strip()
         if not raw:
             console.print("[yellow]Please enter a number.[/]")
             continue
@@ -169,11 +163,7 @@ def interactive_input(max_courses=100):
             name = safe_input("Course name: ").strip()
 
         while True:
-            try:
-                credits_raw = safe_input("Number of credits: ").strip()
-            except EOFError:
-                console.print("\n[red]Input closed unexpectedly. Exiting.[/]")
-                return []
+            credits_raw = safe_input("Number of credits: ").strip()
             try:
                 credits = float(credits_raw)
                 if credits <= 0:
@@ -192,7 +182,6 @@ def interactive_input(max_courses=100):
         course_list.append((name, credits, grade))
 
     return course_list
-
 
 def load_from_json_file(path):
     try:
@@ -220,180 +209,109 @@ def load_from_json_file(path):
     return []
 
 def main():
-    console.print("[bold]Do you want to calculate for multiple semesters?[/]")
-    multi = safe_input("Multiple semesters? (y/n): ").strip().lower()
+    while True:
+        console.print("[bold]Do you want to calculate for multiple semesters?[/]")
+        multi = safe_input("Multiple semesters? (y/n): ").strip().lower()
 
-    all_courses = []
-    semester_summaries = []
+        all_courses = []
+        semester_summaries = []
 
-    if multi == "y":
-        while True:
-            raw = safe_input("How many semesters?: ").strip()
-            if not raw.isdigit() or int(raw) <= 0:
-                console.print("[yellow]Enter a valid number greater than 0.[/]")
-                continue
-            num_semesters = int(raw)
-            break
-
-        for s in range(num_semesters):
-            console.print(f"\n[bold underline green]=== Semester {s+1} ===[/]")
-            console.print("[bold]Choose input method:[/]")
-            console.print("1) JSON file")
-            console.print("2) Manual input")
-            course_list = []
-
+        if multi == "y":
             while True:
-                choice = safe_input("Enter 1 or 2: ").strip()
-                if choice in ("1", "2"):
-                    break
-                console.print("[yellow]Invalid selection. Please enter 1 or 2.[/]")
+                raw = safe_input("How many semesters?: ").strip()
+                if not raw.isdigit() or int(raw) <= 0:
+                    console.print("[yellow]Enter a valid number greater than 0.[/]")
+                    continue
+                num_semesters = int(raw)
+                break
 
-            if choice == "1":
+            for s in range(num_semesters):
+                console.print(f"\n[bold underline green]=== Semester {s+1} ===[/]")
+                console.print("[bold]Choose input method:[/]")
+                console.print("1) JSON file")
+                console.print("2) Manual input")
+                course_list = []
+
                 while True:
-                    path = safe_input("Path to JSON file: ").strip()
-                    course_list = load_from_json_file(path)
-                    if course_list:
+                    choice = safe_input("Enter 1 or 2: ").strip()
+                    if choice in ("1", "2"):
                         break
-                    if not os.path.exists(path):
-                        create = safe_input(f"File '{path}' not found. Create sample template here? (y/n): ").strip().lower()
-                        if create == "y":
-                            create_json_template(path)
-                            console.print("[blue]Edit the file then run again.[/]")
-                            return
-                    retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
-                    if retry != "y":
-                        console.print("[blue]Switching to manual input.[/]")
-                        course_list = interactive_input()
-                        break
-            else:
-                course_list = interactive_input()
+                    console.print("[yellow]Invalid selection. Please enter 1 or 2.[/]")
 
+                if choice == "1":
+                    while True:
+                        path = safe_input("Path to JSON file: ").strip()
+                        course_list = load_from_json_file(path)
+                        if course_list:
+                            break
+                        if not os.path.exists(path):
+                            create = safe_input(f"File '{path}' not found. Create sample template here? (y/n): ").strip().lower()
+                            if create == "y":
+                                create_json_template(path)
+                                console.print("[blue]Edit the file then run again.[/]")
+                                return
+                        retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
+                        if retry != "y":
+                            console.print("[blue]Switching to manual input.[/]")
+                            course_list = interactive_input()
+                            break
+                else:
+                    course_list = interactive_input()
+
+                if not course_list:
+                    console.print(f"[red]Semester {s+1} has no valid courses. Skipping.[/]")
+                    continue
+
+                summary = print_summary(course_list)
+                semester_summaries.append(summary)
+                all_courses.extend(course_list)
+        else:
+            course_list = interactive_input()
             if not course_list:
-                console.print(f"[red]Semester {s+1} has no valid courses. Skipping.[/]")
-                continue
-
+                console.print("[red]No valid courses provided. Exiting.[/]")
+                return
             summary = print_summary(course_list)
             semester_summaries.append(summary)
             all_courses.extend(course_list)
-    else:
-        console.print("[bold]Choose input method:[/]")
-        console.print("1) JSON file")
-        console.print("2) Manual input")
-        course_list = []
 
-        while True:
-            choice = safe_input("Enter 1 or 2: ").strip()
-            if choice in ("1", "2"):
-                break
-            console.print("[yellow]Invalid selection. Please enter 1 or 2.[/]")
+        if len(semester_summaries) > 1:
+            total_weight = sum(s["gpa"] * s["total_credits"] for s in semester_summaries)
+            total_credits = sum(s["total_credits"] for s in semester_summaries)
+            ipk = round(total_weight / total_credits, 2) if total_credits > 0 else 0.0
+            console.print("\n[bold underline blue]--- Final Summary ---[/]")
+            gpa_style = {
+                "Excellent": "bold green",
+                "Very Good": "green",
+                "Good": "yellow",
+                "Fair": "bright_yellow",
+                "Poor": "bold red"
+            }.get(get_category(ipk), "white")
+            console.print(f"[bold]Your IPK is:[/] [{gpa_style}]{ipk}[/{gpa_style}]")
 
-        if choice == "1":
-            while True:
-                path = safe_input("Path to JSON file: ").strip()
-                course_list = load_from_json_file(path)
-                if course_list:
-                    break
-                if not os.path.exists(path):
-                    create = safe_input(f"File '{path}' not found. Create sample template here? (y/n): ").strip().lower()
-                    if create == "y":
-                        create_json_template(path)
-                        console.print("[blue]Edit the file then run again.[/]")
-                        return
-                retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
-                if retry != "y":
-                    console.print("[blue]Switching to manual input.[/]")
-                    course_list = interactive_input()
-                    break
-        else:
-            course_list = interactive_input()
+        export = safe_input("\nSave result to file? (y/n): ").strip().lower()
+        if export == "y":
+            fmt = ""
+            while fmt not in ("txt", "json"):
+                fmt = safe_input("Format (txt/json): ").strip().lower()
+            default_name = f"gpa_summary.{fmt}"
+            path = safe_input(f"Destination file [{default_name}]: ").strip()
+            if not path:
+                path = default_name
+            export_results(
+                all_courses,
+                {
+                    "gpa": ipk if len(semester_summaries) > 1 else semester_summaries[0]["gpa"],
+                    "category": get_category(ipk if len(semester_summaries) > 1 else semester_summaries[0]["gpa"]),
+                    "total_credits": sum(s["total_credits"] for s in semester_summaries)
+                },
+                path,
+                fmt
+            )
 
-        if not course_list:
-            console.print("[red]No valid courses provided. Exiting.[/]")
-            return
-
-        summary = print_summary(course_list)
-        semester_summaries.append(summary)
-        all_courses.extend(course_list)
-
-    # Hitung dan tampilkan IPK keseluruhan
-    if len(semester_summaries) > 1:
-        total_weight = sum(s["gpa"] * s["total_credits"] for s in semester_summaries)
-        total_credits = sum(s["total_credits"] for s in semester_summaries)
-        ipk = round(total_weight / total_credits, 2) if total_credits > 0 else 0.0
-
-        console.print("\n[bold underline blue]--- Final Summary ---[/]")
-        gpa_style = {
-            "Excellent": "bold green",
-            "Very Good": "green",
-            "Good": "yellow",
-            "Fair": "bright_yellow",
-            "Poor": "bold red"
-        }.get(get_category(ipk), "white")
-
-        console.print(f"[bold]Your IPK is:[/] [{gpa_style}]{ipk}[/{gpa_style}]")
-
-    export = safe_input("\nSave result to file? (y/n): ").strip().lower()
-    if export == "y":
-        fmt = ""
-        while fmt not in ("txt", "json"):
-            fmt = safe_input("Format (txt/json): ").strip().lower()
-        default_name = f"gpa_summary.{fmt}"
-        path = safe_input(f"Destination file [{default_name}]: ").strip()
-        if not path:
-            path = default_name
-        export_results(all_courses, {
-            "gpa": ipk if len(semester_summaries) > 1 else semester_summaries[0]["gpa"],
-            "category": get_category(ipk if len(semester_summaries) > 1 else semester_summaries[0]["gpa"]),
-            "total_credits": sum(s["total_credits"] for s in semester_summaries)
-        }, path, fmt)
-
-    console.print("[bold]Choose input method:[/]")
-    console.print("1) JSON file")
-    console.print("2) Manual input")
-    course_list = []
-
-    while True:
-        choice = safe_input("Enter 1 or 2: ").strip()
-        if choice in ("1", "2"):
+        again = safe_input("\nDo you want to input another GPA calculation? (y/n): ").strip().lower()
+        if again != "y":
+            console.print("[bold green]Thank you. Goodbye![/]")
             break
-        console.print("[yellow]Invalid selection. Please enter 1 or 2.[/]")
-
-    if choice == "1":
-        while True:
-            path = safe_input("Path to JSON file: ").strip()
-            course_list = load_from_json_file(path)
-            if course_list:
-                break
-            if not os.path.exists(path):
-                create = safe_input(f"File '{path}' not found. Create sample template here? (y/n): ").strip().lower()
-                if create == "y":
-                    create_json_template(path)
-                    console.print("[blue]Edit the file then run again.[/]")
-                    return
-            retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
-            if retry != "y":
-                console.print("[blue]Switching to manual input.[/]")
-                course_list = interactive_input()
-                break
-    else:
-        course_list = interactive_input()
-
-    if not course_list:
-        console.print("[red]No valid courses provided. Exiting.[/]")
-        return
-
-    summary = print_summary(course_list)
-
-    export = safe_input("\nSave result to file? (y/n): ").strip().lower()
-    if export == "y":
-        fmt = ""
-        while fmt not in ("txt", "json"):
-            fmt = safe_input("Format (txt/json): ").strip().lower()
-        default_name = f"gpa_summary.{fmt}"
-        path = safe_input(f"Destination file [{default_name}]: ").strip()
-        if not path:
-            path = default_name
-        export_results(course_list, summary, path, fmt)
 
 if __name__ == "__main__":
     try:
