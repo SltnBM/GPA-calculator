@@ -19,6 +19,11 @@ Install dependencies by running either:
 pip install -r requirements.txt
 ```
 
+or manually
+```bash
+pip install rich pyperclip
+```
+
 ## 🚀 How to Use
 1. 📥 Clone the repository
 ```bash
