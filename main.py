@@ -153,7 +153,7 @@ def interactive_input(max_courses=100):
                 continue
             break
         except ValueError:
-            console.print("[yellow]Invalid number. Please enter an integer.[/]")
+            console.print("[yellow]Invalid number. Please enter an number.[/]")
 
     for i in range(num_courses):
         console.print(f"\n[bold]Course {i+1}[/]")
@@ -210,8 +210,15 @@ def load_from_json_file(path):
 
 def main():
     while True:
-        console.print("[bold]Do you want to calculate for multiple semesters?[/]")
-        multi = safe_input("Multiple semesters? (y/n): ").strip().lower()
+        multi = ""
+        while multi not in ("y", "n"):
+            console.print("[bold]Do you want to calculate for multiple semesters?[/]")
+            multi = safe_input("Multiple semesters? (y/n): ").strip().lower()
+            if not multi:
+                console.print("[yellow]Input cannot be empty. Please enter 'y' or 'n'.[/]")
+            elif multi not in ("y", "n"):
+                console.print("[yellow]Invalid input. Please enter 'y' or 'n'.[/]")
+
 
         all_courses = []
         semester_summaries = []
