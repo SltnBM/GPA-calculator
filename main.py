@@ -220,6 +220,133 @@ def load_from_json_file(path):
     return []
 
 def main():
+    console.print("[bold]Do you want to calculate for multiple semesters?[/]")
+    multi = safe_input("Multiple semesters? (y/n): ").strip().lower()
+
+    all_courses = []
+    semester_summaries = []
+
+    if multi == "y":
+        while True:
+            raw = safe_input("How many semesters?: ").strip()
+            if not raw.isdigit() or int(raw) <= 0:
+                console.print("[yellow]Enter a valid number greater than 0.[/]")
+                continue
+            num_semesters = int(raw)
+            break
+
+        for s in range(num_semesters):
+            console.print(f"\n[bold underline green]=== Semester {s+1} ===[/]")
+            console.print("[bold]Choose input method:[/]")
+            console.print("1) JSON file")
+            console.print("2) Manual input")
+            course_list = []
+
+            while True:
+                choice = safe_input("Enter 1 or 2: ").strip()
+                if choice in ("1", "2"):
+                    break
+                console.print("[yellow]Invalid selection. Please enter 1 or 2.[/]")
+
+            if choice == "1":
+                while True:
+                    path = safe_input("Path to JSON file: ").strip()
+                    course_list = load_from_json_file(path)
+                    if course_list:
+                        break
+                    if not os.path.exists(path):
+                        create = safe_input(f"File '{path}' not found. Create sample template here? (y/n): ").strip().lower()
+                        if create == "y":
+                            create_json_template(path)
+                            console.print("[blue]Edit the file then run again.[/]")
+                            return
+                    retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
+                    if retry != "y":
+                        console.print("[blue]Switching to manual input.[/]")
+                        course_list = interactive_input()
+                        break
+            else:
+                course_list = interactive_input()
+
+            if not course_list:
+                console.print(f"[red]Semester {s+1} has no valid courses. Skipping.[/]")
+                continue
+
+            summary = print_summary(course_list)
+            semester_summaries.append(summary)
+            all_courses.extend(course_list)
+    else:
+        console.print("[bold]Choose input method:[/]")
+        console.print("1) JSON file")
+        console.print("2) Manual input")
+        course_list = []
+
+        while True:
+            choice = safe_input("Enter 1 or 2: ").strip()
+            if choice in ("1", "2"):
+                break
+            console.print("[yellow]Invalid selection. Please enter 1 or 2.[/]")
+
+        if choice == "1":
+            while True:
+                path = safe_input("Path to JSON file: ").strip()
+                course_list = load_from_json_file(path)
+                if course_list:
+                    break
+                if not os.path.exists(path):
+                    create = safe_input(f"File '{path}' not found. Create sample template here? (y/n): ").strip().lower()
+                    if create == "y":
+                        create_json_template(path)
+                        console.print("[blue]Edit the file then run again.[/]")
+                        return
+                retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
+                if retry != "y":
+                    console.print("[blue]Switching to manual input.[/]")
+                    course_list = interactive_input()
+                    break
+        else:
+            course_list = interactive_input()
+
+        if not course_list:
+            console.print("[red]No valid courses provided. Exiting.[/]")
+            return
+
+        summary = print_summary(course_list)
+        semester_summaries.append(summary)
+        all_courses.extend(course_list)
+
+    # Hitung dan tampilkan IPK keseluruhan
+    if len(semester_summaries) > 1:
+        total_weight = sum(s["gpa"] * s["total_credits"] for s in semester_summaries)
+        total_credits = sum(s["total_credits"] for s in semester_summaries)
+        ipk = round(total_weight / total_credits, 2) if total_credits > 0 else 0.0
+
+        console.print("\n[bold underline blue]--- Final Summary ---[/]")
+        gpa_style = {
+            "Excellent": "bold green",
+            "Very Good": "green",
+            "Good": "yellow",
+            "Fair": "bright_yellow",
+            "Poor": "bold red"
+        }.get(get_category(ipk), "white")
+
+        console.print(f"[bold]Your IPK is:[/] [{gpa_style}]{ipk}[/{gpa_style}]")
+
+    export = safe_input("\nSave result to file? (y/n): ").strip().lower()
+    if export == "y":
+        fmt = ""
+        while fmt not in ("txt", "json"):
+            fmt = safe_input("Format (txt/json): ").strip().lower()
+        default_name = f"gpa_summary.{fmt}"
+        path = safe_input(f"Destination file [{default_name}]: ").strip()
+        if not path:
+            path = default_name
+        export_results(all_courses, {
+            "gpa": ipk if len(semester_summaries) > 1 else semester_summaries[0]["gpa"],
+            "category": get_category(ipk if len(semester_summaries) > 1 else semester_summaries[0]["gpa"]),
+            "total_credits": sum(s["total_credits"] for s in semester_summaries)
+        }, path, fmt)
+
     console.print("[bold]Choose input method:[/]")
     console.print("1) JSON file")
     console.print("2) Manual input")
