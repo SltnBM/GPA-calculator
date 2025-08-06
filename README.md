@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 or manually
 ```bash
-pip install rich pyperclip
+pip install rich
 ```
 
 ## 🚀 How to Use
