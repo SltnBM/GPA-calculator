@@ -112,7 +112,8 @@ def export_results(course_list, summary, dest_path, fmt):
             with open(dest_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=2)
             console.print(f"[green]Exported summary to JSON file: {dest_path}[/]")
-        else:  # txt
+
+        elif fmt == "txt":
             with open(dest_path, "w", encoding="utf-8") as f:
                 f.write("=== Course Summary ===\n")
                 for c in data["courses"]:
@@ -122,8 +123,15 @@ def export_results(course_list, summary, dest_path, fmt):
                 f.write(f"Category: {data['category']}\n")
                 f.write(f"Generated at: {data['generated_at']}\n")
             console.print(f"[green]Exported summary to TXT file: {dest_path}[/]")
+
+        elif fmt == "both":
+            base = os.path.splitext(dest_path)[0]
+            for ext in ("json", "txt"):
+                export_results(course_list, summary, f"{base}.{ext}", ext)
+
     except IOError as e:
         console.print(f"[red]Failed to export: {e}[/]")
+
 
 def create_json_template(path):
     sample = [
@@ -298,9 +306,10 @@ def main():
         export = safe_input("\nSave result to file? (y/n): ").strip().lower()
         if export == "y":
             fmt = ""
-            while fmt not in ("txt", "json"):
-                fmt = safe_input("Format (txt/json): ").strip().lower()
-            default_name = f"gpa_summary.{fmt}"
+            while fmt not in ("txt", "json", "both"):
+                fmt = safe_input("Format (txt/json/both): ").strip().lower()
+
+            default_name = "gpa_summary" if fmt == "both" else f"gpa_summary.{fmt}"
             path = safe_input(f"Destination file [{default_name}]: ").strip()
             if not path:
                 path = default_name
