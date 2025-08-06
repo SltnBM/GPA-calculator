@@ -220,6 +220,7 @@ def main():
     while True:
         multi = ""
         while multi not in ("y", "n"):
+            console.print("[bold]===== GPA CALCULATOR =====[/]")
             console.print("[bold]Do you want to calculate for multiple semesters?[/]")
             multi = safe_input("Multiple semesters? (y/n): ").strip().lower()
             if not multi:
