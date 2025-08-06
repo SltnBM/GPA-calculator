@@ -54,6 +54,9 @@ python main.py
 | E     | 0.0    |
 
 ## 💻 Example Session
+===== GPA CALCULATOR =====
+Do you want to calculate for multiple semesters?
+Multiple semesters? (y/n): n
 ```bash
 Choose input method:
 1) JSON file
