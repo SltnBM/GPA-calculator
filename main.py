@@ -282,10 +282,41 @@ def main():
                 semester_summaries.append(summary)
                 all_courses.extend(course_list)
         else:
-            course_list = interactive_input()
+            console.print("\n[bold]Choose input method:[/]")
+            console.print("1) JSON file")
+            console.print("2) Manual input")
+
+            course_list = []
+            while True:
+                choice = safe_input("Enter 1 or 2: ").strip()
+                if choice in ("1", "2"):
+                    break
+                console.print("[yellow]Invalid selection. Please enter 1 or 2.[/]")
+
+            if choice == "1":
+                while True:
+                    path = safe_input("Path to JSON file: ").strip()
+                    course_list = load_from_json_file(path)
+                    if course_list:
+                        break
+                    if not os.path.exists(path):
+                        create = safe_input(f"File '{path}' not found. Create sample template here? (y/n): ").strip().lower()
+                        if create == "y":
+                            create_json_template(path)
+                            console.print("[blue]Edit the file then run again.[/]")
+                            return
+                    retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
+                    if retry != "y":
+                        console.print("[blue]Switching to manual input.[/]")
+                        course_list = interactive_input()
+                        break
+            else:
+                course_list = interactive_input()
+
             if not course_list:
                 console.print("[red]No valid courses provided. Exiting.[/]")
                 return
+
             summary = print_summary(course_list)
             semester_summaries.append(summary)
             all_courses.extend(course_list)
