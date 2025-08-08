@@ -8,7 +8,7 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 - 📚 Support for multiple semesters with per-semester GPA summary
 - 💾 Export results to `.txt` or `.json` or both (`.txt` & `.json`)
 - 🔁 Option to calculate GPA again without exiting the program
-- 📈 Auto-calculates final cumulative GPA (IPK) if multiple semesters are entered
+- 📈 Auto-calculates final cumulative GPA if multiple semesters are entered
 - 🧠 Supports different input methods (manual or JSON) for each semester
 - 🧾 Auto-create sample JSON file if input file is missing
 - 🛡️ Input validation for missing, invalid, or incorrect grade/credit formats
@@ -18,7 +18,7 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 
 ## 📋 Requirements
 1. 🐍 Python 3.6+
-2. 📦 Rich
+2. 📦 `Rich` for styled console output
 
 Install dependencies by running either:
 ```bash
