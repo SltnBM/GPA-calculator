@@ -32,6 +32,13 @@ or manually
 ```bash
 pip install rich
 ```
+## 📁 Project Structure
+GPA-calculator/
+├── LICENSE
+├── README.md
+├── courses.json
+├── main.py
+└── requirements.txt
 
 ## 🚀 How to Use
 1. 📥 Clone the repository
