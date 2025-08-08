@@ -33,12 +33,14 @@ or manually
 pip install rich
 ```
 ## 📁 Project Structure
+```plaintext
 GPA-calculator/
 ├── LICENSE
 ├── README.md
 ├── courses.json
 ├── main.py
 └── requirements.txt
+```
 
 ## 🚀 How to Use
 1. 📥 Clone the repository
