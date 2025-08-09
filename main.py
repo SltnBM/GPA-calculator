@@ -2,10 +2,10 @@ import json
 import sys
 import os
 from datetime import datetime
-
 from rich.console import Console
 from rich.table import Table
 from rich.text import Text
+import csv
 
 console = Console()
 
@@ -216,6 +216,29 @@ def load_from_json_file(path):
         console.print(f"[red]I/O error reading file: {e}[/]")
     return []
 
+def load_from_csv_file(path):
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            courses = []
+            for row in reader:
+                name = row.get("name", "").strip()
+                try:
+                    credits = float(row.get("credits", 0))
+                except (TypeError, ValueError):
+                    credits = -1
+                grade = row.get("grade", "").strip().upper()
+                if not name or credits <= 0 or grade not in grade_weights:
+                    console.print(f"[yellow]Skipping invalid entry: {row}[/]")
+                    continue
+                courses.append((name, credits, grade))
+            return courses
+    except FileNotFoundError:
+        console.print(f"[red]File not found: {path}[/]")
+    except IOError as e:
+        console.print(f"[red]I/O error reading file: {e}[/]")
+    return []
+
 def main():
     while True:
         multi = ""
@@ -246,13 +269,14 @@ def main():
                 console.print("[bold]Choose input method:[/]")
                 console.print("1) JSON file")
                 console.print("2) Manual input")
+                console.print("3) CSV file")
                 course_list = []
 
                 while True:
-                    choice = safe_input("Enter 1 or 2: ").strip()
-                    if choice in ("1", "2"):
+                    choice = safe_input("Enter 1/2/3:").strip()
+                    if choice in ("1", "2", "3"):
                         break
-                    console.print("[yellow]Invalid selection. Please enter 1 or 2.[/]")
+                    console.print("[yellow]Invalid selection. Please enter 1/2/3.[/]")
 
                 if choice == "1":
                     while True:
@@ -266,6 +290,19 @@ def main():
                                 create_json_template(path)
                                 console.print("[blue]Edit the file then run again.[/]")
                                 return
+                        retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
+                        if retry != "y":
+                            console.print("[blue]Switching to manual input.[/]")
+                            course_list = interactive_input()
+                            break
+                elif choice == "2":
+                    course_list = interactive_input()
+                elif choice == "3":
+                    while True:
+                        path = safe_input("Path to CSV file: ").strip()
+                        course_list = load_from_csv_file(path)
+                        if course_list:
+                            break
                         retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
                         if retry != "y":
                             console.print("[blue]Switching to manual input.[/]")
@@ -285,13 +322,14 @@ def main():
             console.print("\n[bold]Choose input method:[/]")
             console.print("1) JSON file")
             console.print("2) Manual input")
+            console.print("3) CSV file")
 
             course_list = []
             while True:
-                choice = safe_input("Enter 1 or 2: ").strip()
-                if choice in ("1", "2"):
+                choice = safe_input("Enter 1/2/3: ").strip()
+                if choice in ("1", "2", "3"):
                     break
-                console.print("[yellow]Invalid selection. Please enter 1 or 2.[/]")
+                console.print("[yellow]Invalid selection. Please enter 1/2/3.[/]")
 
             if choice == "1":
                 while True:
@@ -305,6 +343,19 @@ def main():
                             create_json_template(path)
                             console.print("[blue]Edit the file then run again.[/]")
                             return
+                    retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
+                    if retry != "y":
+                        console.print("[blue]Switching to manual input.[/]")
+                        course_list = interactive_input()
+                        break
+            elif choice == "2":
+                course_list = interactive_input()
+            elif choice == "3":
+                while True:
+                    path = safe_input("Path to CSV file: ").strip()
+                    course_list = load_from_csv_file(path)
+                    if course_list:
+                        break
                     retry = safe_input("Failed to load or no valid entries. Retry? (y/n): ").strip().lower()
                     if retry != "y":
                         console.print("[blue]Switching to manual input.[/]")
