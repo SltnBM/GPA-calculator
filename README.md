@@ -80,7 +80,7 @@ Choose input method:
 1) JSON file
 2) Manual input
 3) CSV file
-Enter 1 or 2: 2        
+Enter 1/2/3: 2        
 How many courses? 3
 
 Course 1
