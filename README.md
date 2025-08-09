@@ -145,6 +145,36 @@ If the file is valid, the program will read the data and display the GPA summary
 - ⚠️ If the file doesn’t exist, the program will offer to create a sample template for you.
 - 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
+## 📄 Using CSV Template
+1️⃣ **Edit the Template**
+A ready-to-use template_courses.csv file is provided in the repository. You can edit it to match your own courses, credits, and grades.
+
+2️⃣ **CSV Format**
+```csv
+name,credits,grade
+Calculus,3,A
+Physics,4,BC
+English Literature,2,B
+Programming Fundamentals,3,AB
+Database Systems,3,A
+Statistics,2,C
+```
+
+3️⃣ **Choose CSV Options**
+```bash
+Choose input method:
+1) JSON file
+2) Manual input
+3) CSV file
+Enter 1, 2, or 3: 3
+Path to CSV file: template_courses.csv
+```
+
+💡 **Tips**:
+- CSV must have the exact column names: name, credits, grade.
+- Credits can be decimal values.
+- Grade must be one of: A, AB, B, BC, C, D, E (case-insensitive).
+
 ## 📂 Example JSON Template
 ```json
 [
