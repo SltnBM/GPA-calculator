@@ -79,6 +79,7 @@ Multiple semesters? (y/n): n
 Choose input method:
 1) JSON file
 2) Manual input
+3) CSV file
 Enter 1 or 2: 2        
 How many courses? 3
 
