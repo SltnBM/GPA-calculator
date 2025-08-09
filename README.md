@@ -34,7 +34,7 @@ pip install rich
 ```
 ## 📁 Project Structure
 ```plaintext
-GPA-calculator/
+📂 GPA-calculator/
 ├── 📄 LICENSE
 ├── 📄 README.md
 ├── 📄 courses.json
