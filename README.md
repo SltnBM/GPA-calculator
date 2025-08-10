@@ -5,19 +5,23 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## ✨ Features
-- 📝 Input course name, credits, and grade (A, AB, B, BC, C, D, E)
-- ➗ Weighted GPA calculation based on course credits
-- 🏷️ GPA classification: Excellent / Very Good / Good / Fair / Poor
-- 📚 Support for multiple semesters with per-semester GPA summary
-- 💾 Export results to `.txt`, `.json`, `.csv`, or all formats at once
-- 🔁 Option to calculate GPA again without exiting the program
-- 📈 Auto-calculates final cumulative GPA if multiple semesters are entered
-- 🧠 Supports different input methods (manual, JSON, or CSV) for each semester
-- 🧾 Auto-create sample JSON file if input file is missing
-- 🛡️ Input validation for missing, invalid, or incorrect grade/credit formats
-- 🌈 Beautiful colored output with tables and styled GPA categories using `rich`
-- ❌ Early exit with `Ctrl+C` showing partial summary
-- ⚡ Lightweight CLI, zero external dependencies
+**Input & Validation**
+- 📝 Input course name, credits, and grade (A, AB, B, BC, C, D, E; case-insensitive)
+- 🧠 Support multiple input methods: manual, JSON, or CSV per semester
+- 🛡️ Validate missing, invalid, or incorrectly formatted grades/credits
+- 🧾 Auto-generate sample JSON file if input file is missing
+**Calculation & Summary**
+- ➗ Calculate weighted GPA based on course credits
+- 🏷️ Classify GPA: Excellent / Very Good / Good / Fair / Poor
+- 📚 Handle multiple semesters with per-semester GPA summaries
+- 📈 Automatically calculate final cumulative GPA if multiple semesters are entered
+**Export & Output**
+- 💾 Export results to .txt, .json, .csv, or all formats at once
+- 🌈 Display colorful output with tables and styled GPA categories using rich
+**User Experience**
+- 🔁 Recalculate GPA without restarting the program
+- ❌ Graceful early exit with Ctrl+C, showing partial summary
+- ⚡ Lightweight CLI with zero external dependencies
 
 ## 📋 Requirements
 1. 🐍 Python 3.6+
