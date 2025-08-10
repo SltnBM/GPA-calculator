@@ -64,18 +64,40 @@ def export_results(course_list, summary, dest_path, fmt):
         "category": summary["category"],
         "courses": [{"name": n, "credits": c, "grade": g} for n, c, g in course_list]
     }
+
     try:
-        if fmt in ("json", "both"):
-            with open(dest_path if fmt == "json" else os.path.splitext(dest_path)[0]+".json", "w", encoding="utf-8") as f:
+        if fmt in ("json", "all"):
+            json_path = dest_path if fmt == "json" else os.path.splitext(dest_path)[0] + ".json"
+            with open(json_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=2)
-            if fmt == "json": console.print(f"[green]Exported summary to JSON file: {dest_path}[/]")
-        if fmt in ("txt", "both"):
-            with open(dest_path if fmt == "txt" else os.path.splitext(dest_path)[0]+".txt", "w", encoding="utf-8") as f:
+            if fmt == "json":
+                console.print(f"[green]Exported summary to JSON file: {json_path}[/]")
+
+        if fmt in ("txt", "all"):
+            txt_path = dest_path if fmt == "txt" else os.path.splitext(dest_path)[0] + ".txt"
+            with open(txt_path, "w", encoding="utf-8") as f:
                 f.write("=== Course Summary ===\n")
                 for c in data["courses"]:
                     f.write(f"{c['name']} | Credits: {c['credits']} | Grade: {c['grade']}\n")
                 f.write(f"\nTotal Credits: {data['total_credits']}\nGPA: {data['gpa']}\nCategory: {data['category']}\nGenerated at: {data['generated_at']}\n")
-            if fmt == "txt": console.print(f"[green]Exported summary to TXT file: {dest_path}[/]")
+            if fmt == "txt":
+                console.print(f"[green]Exported summary to TXT file: {txt_path}[/]")
+
+        if fmt in ("csv", "all"):
+            csv_path = dest_path if fmt == "csv" else os.path.splitext(dest_path)[0] + ".csv"
+            with open(csv_path, "w", newline="", encoding="utf-8") as f:
+                writer = csv.writer(f)
+                writer.writerow(["Course Name", "Credits", "Grade"])
+                for c in data["courses"]:
+                    writer.writerow([c["name"], c["credits"], c["grade"]])
+                writer.writerow([])
+                writer.writerow(["Total Credits", data["total_credits"]])
+                writer.writerow(["GPA", data["gpa"]])
+                writer.writerow(["Category", data["category"]])
+                writer.writerow(["Generated At", data["generated_at"]])
+            if fmt == "csv":
+                console.print(f"[green]Exported summary to CSV file: {csv_path}[/]")
+
     except IOError as e:
         console.print(f"[red]Failed to export: {e}[/]")
 
@@ -216,9 +238,9 @@ def main():
         export = safe_input("\nSave result to file? (y/n): ").strip().lower()
         if export == "y":
             fmt = ""
-            while fmt not in ("txt", "json", "both"):
-                fmt = safe_input("Format (txt/json/both): ").strip().lower()
-            default_name = "gpa_summary" if fmt == "both" else f"gpa_summary.{fmt}"
+            while fmt not in ("txt", "json", "csv", "all"):
+                fmt = safe_input("Format (txt/json/csv/all): ").strip().lower()
+            default_name = "gpa_summary" if fmt == "all" else f"gpa_summary.{fmt}"
             path = safe_input(f"Destination file [{default_name}]: ").strip() or default_name
             export_results(all_courses,
                 {"gpa": ipk if len(semester_summaries) > 1 else semester_summaries[0]["gpa"],
