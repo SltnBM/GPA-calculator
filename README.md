@@ -10,14 +10,17 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 - 🧠 Support multiple input methods: manual, `JSON`, or `CSV` per semester
 - 🛡️ Validate missing, invalid, or incorrectly formatted grades/credits
 - 🧾 Auto-generate sample `JSON` file if input file is missing
+
 **Calculation & Summary**
 - ➗ Calculate weighted GPA based on course credits
 - 🏷️ Classify GPA: Excellent / Very Good / Good / Fair / Poor
 - 📚 Handle multiple semesters with per-semester GPA summaries
 - 📈 Automatically calculate final cumulative GPA if multiple semesters are entered
+
 **Export & Output**
 - 💾 Export results to `.txt`, `.json`, `.csv`, or all formats at once
 - 🌈 Display colorful output with tables and styled GPA categories using `rich`
+
 **User Experience**
 - 🔁 Recalculate GPA without restarting the program
 - ❌ Graceful early exit with `Ctrl+C`, showing partial summary
