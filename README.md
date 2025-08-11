@@ -127,6 +127,7 @@ Exported summary to TXT file: gpa_summary_example.txt
 Instead of manual input, you can use a JSON file like the example above to calculate your GPA automatically.
 
 1️⃣ **Edit the Template**  
+
 A ready-to-use `courses.json` file is already provided in the repository. You can edit it to match your own courses, credits, and grades.
 
 2️⃣ **Run the Script** 
