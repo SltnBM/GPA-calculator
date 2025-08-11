@@ -164,18 +164,12 @@ If the file is valid, the program will read the data and display the GPA summary
 ## 📄 Using CSV Template
 1️⃣ **Edit the Template**
 
-A ready-to-use template_courses.csv file is provided in the repository. You can edit it to match your own courses, credits, and grades.
+A ready-to-use `template_courses.csv` file is provided in the repository. You can edit it to match your own courses, credits, and grades.
 
-2️⃣ **CSV Format**
-```csv
-name,credits,grade
-Calculus,3,A
-Physics,4,BC
-English Literature,2,B
-Programming Fundamentals,3,AB
-Database Systems,3,A
-Statistics,2,C
-```
+2️⃣ **Run the Script** 
+   ```bash
+   python main.py
+   ```
 
 3️⃣ **Choose CSV Options**
 ```bash
