@@ -162,6 +162,8 @@ If the file is valid, the program will read the data and display the GPA summary
 ```
 
 ## 📄 Using CSV Template
+Instead of manual input, you can use a CSV file like the example above to calculate your GPA automatically.
+
 1️⃣ **Edit the Template**
 
 A ready-to-use `template_courses.csv` file is provided in the repository. You can edit it to match your own courses, credits, and grades.
