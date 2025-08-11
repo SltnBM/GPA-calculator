@@ -186,8 +186,18 @@ Path to CSV file: template_courses.csv
 - Credits can be decimal values.
 - Grade must be one of: A, AB, B, BC, C, D, E (case-insensitive).
 
-## 🎯 GPA Classification
+## 📂 Example CSV Template
+```csv
+name,credits,grade
+Calculus,3,A
+Physics,4,BC
+English Literature,2,B
+Programming Fundamentals,3,AB
+Database Systems,3,A
+Statistics,2,C
+```
 
+## 🎯 GPA Classification
 The following table shows the numeric ranges used to classify the calculated GPA:
 
 | Category  | GPA Range (inclusive) |
