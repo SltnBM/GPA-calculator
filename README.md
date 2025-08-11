@@ -78,10 +78,10 @@ python main.py
 | E     | 0.0    |
 
 ## 💻 Example Session
+```bash
 ===== GPA CALCULATOR =====
 Do you want to calculate for multiple semesters?
 Multiple semesters? (y/n): n
-```bash
 Choose input method:
 1) JSON file
 2) Manual input
@@ -154,6 +154,7 @@ If the file is valid, the program will read the data and display the GPA summary
 
 ## 📄 Using CSV Template
 1️⃣ **Edit the Template**
+
 A ready-to-use template_courses.csv file is provided in the repository. You can edit it to match your own courses, credits, and grades.
 
 2️⃣ **CSV Format**
