@@ -13,7 +13,7 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 
 **Calculation & Summary**
 - ➗ Calculate weighted GPA based on course credits
-- 🏷️ Classify GPA: Excellent / Very Good / Good / Fair / Poor
+- 🏷️ Classify GPA: `Excellent / Very Good / Good / Fair / Poor`
 - 📚 Handle multiple semesters with per-semester GPA summaries
 - 📈 Automatically calculate final cumulative GPA if multiple semesters are entered
 
