@@ -213,7 +213,7 @@ def load_from_file(path, filetype):
 
 def choose_input_method():
     console.print(
-        "[bold]Choose input method:[/]\n1) JSON file\n2) Manual input\n3) CSV file"
+        "[bold green]Choose input method:[/]\n1) JSON file\n2) Manual input\n3) CSV file"
     )
     while True:
         choice = safe_input("Enter 1/2/3: ").strip()
@@ -262,7 +262,7 @@ def main():
         multi = ""
         while multi not in ("y", "n"):
             console.print(
-                "[bold]===== GPA CALCULATOR =====[/]\n[bold]Do you want to calculate for multiple semesters?[/]"
+                "[bold blue]===== GPA CALCULATOR =====[/]\n[bold]Do you want to calculate for multiple semesters?[/]"
             )
             multi = safe_input("Multiple semesters? (y/n): ").strip().lower()
         all_courses, semester_summaries = [], []
