@@ -1,6 +1,0 @@
-[
-  { "name": "Calculus", "credits": 3, "grade": "A" },
-  { "name": "Physics", "credits": 4, "grade": "BC" },
-  { "name": "English Literature", "credits": 2, "grade": "B" },
-  { "name": "Programming Fundamentals", "credits": 3, "grade": "AB" }
-]
