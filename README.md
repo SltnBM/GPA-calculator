@@ -6,7 +6,7 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 
 ## ✨ Features
 **Input & Validation**
-- 📝 Input course name, credits, and grade (A, AB, B, BC, C, D, E; case-insensitive)
+- 📝 Input course name, credits, and grade (A, AB, B, BC, C, D, E; `case-insensitive`)
 - 🧠 Support multiple input methods: manual, `JSON`, or `CSV` per semester
 - 🛡️ Validate missing, invalid, or incorrectly formatted grades/credits
 - 🧾 Auto-generate sample `JSON` file if input file is missing
