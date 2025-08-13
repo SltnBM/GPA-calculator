@@ -1,14 +1,15 @@
 # 🎓 GPA Calculator CLI
 A simple Python CLI tool to calculate GPA based on course credits and grades.
 
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="120" style="border:0" alt="Python Logo">
+</p>
+
 ![Python](https://img.shields.io/badge/python-3.6%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Requirements](https://img.shields.io/badge/requirements-rich%20v13%2B-green)
 ![Repo Size](https://img.shields.io/github/repo-size/SltnBM/GPA-calculator)
 
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="120" style="border:0" alt="Python Logo">
-</p>
 
 ## ✨ Features
 **Input & Validation**
