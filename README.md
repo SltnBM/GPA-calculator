@@ -34,7 +34,7 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 
 ## 📋 Requirements
 1. 🐍 Python 3.6+
-2. 📦 `Rich` for styled console output
+2. 📦 `Rich` package
 
 Install dependencies by running either:
 ```bash
