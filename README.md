@@ -6,6 +6,10 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 ![Requirements](https://img.shields.io/badge/requirements-rich%20v13%2B-green)
 ![Repo Size](https://img.shields.io/github/repo-size/SltnBM/GPA-calculator)
 
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="120" style="border:0" alt="Python Logo">
+</p>
+
 ## ✨ Features
 **Input & Validation**
 - 📝 Input course name, credits, and grade (A, AB, B, BC, C, D, E; `case-insensitive`)
