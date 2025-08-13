@@ -219,6 +219,18 @@ The following table shows the numeric ranges used to classify the calculated GPA
 
 > **Note:** GPA is calculated based on weighted credits. The classification is determined using the actual GPA value before rounding, to ensure accuracy.
 
+## 🧮 Calculation Formula
+**Grade weights:** `A=4.0, AB=3.5, B=3.0, BC=2.5, C=2.0, D=1.0, E=0.0` (case-insensitive).
+**Semester GPA**
+```
+GPA = round( Σ (grade_weight × credits) / Σ credits , 2 )
+```
+
+**Cumulative GPA**
+```
+IPK = round( Σ (GPA_semester × semester_credits) / Σ semester_credits , 2 )
+```
+
 ## 🤝 Contributing
 Feel free to open issues or submit pull requests for improvements or bug fixes.
 
