@@ -10,27 +10,15 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 ![Requirements](https://img.shields.io/badge/requirements-rich%20v13%2B-green)
 ![Repo Size](https://img.shields.io/github/repo-size/SltnBM/GPA-calculator)
 
-
 ## ✨ Features
-**Input & Validation**
-- 📝 Input course name, credits, and grade (A, AB, B, BC, C, D, E; `case-insensitive`)
-- 🧠 Support multiple input methods: `manual`, `JSON`, or `CSV` per semester
-- 🛡️ Validate missing, invalid, or incorrectly formatted grades/credits
-- 🧾 Auto-generate sample `JSON` file if input file is missing
+- 📝 Flexible input: manual, JSON, or CSV (per semester) with auto JSON sample.
+- 🛡️ Validation for missing/invalid grades & credits.
+- ➗ Weighted GPA calculation + classification.
+- 📚 Multi-semester support with per-semester & cumulative GPA.
+- 💾 Export to TXT, JSON, CSV, or all formats.
+- 🌈 Colorful table output using Rich.
+- 🔁 Recalculate without restart, graceful exit with partial summary.
 
-**Calculation & Summary**
-- ➗ Calculate weighted GPA based on course credits
-- 🏷️ Classify GPA: `Excellent / Very Good / Good / Fair / Poor`
-- 📚 Handle multiple semesters with per-semester GPA summaries
-- 📈 Automatically calculate final cumulative GPA if multiple semesters are entered
-
-**Export & Output**
-- 💾 Export results to `.txt`, `.json`, `.csv`, or `all formats` at once
-- 🌈 Display colorful output with tables and styled GPA categories using `rich`
-
-**User Experience**
-- 🔁 Recalculate GPA without restarting the program
-- ❌ Graceful early exit with `Ctrl+C`, showing partial summary
 
 ## 📋 Requirements
 1. 🐍 Python 3.6+
