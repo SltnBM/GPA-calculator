@@ -169,6 +169,7 @@ Path to CSV file: template_courses.csv
 
 💡 **Tips**:
 - CSV must have the exact column names: name, credits, grade.
+- 🆓 The file name can be anything, as long as it ends with `.csv` and follows the correct format.
 - Credits can be decimal values.
 - 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
