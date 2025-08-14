@@ -46,7 +46,7 @@ pip install rich
 ## 🚀 How to Use
 1. 📥 Clone the repository
 ```bash
-https://github.com/SltnBM/GPA-calculator.git
+git clone https://github.com/SltnBM/GPA-calculator.git
 ```
 2. 📂 Navigate to the project directory
 ```bash
