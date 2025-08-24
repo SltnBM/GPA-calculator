@@ -44,19 +44,20 @@ pip install rich
 ```
 
 ## 🚀 How to Use
-1. 📥 Clone the repository
+1. Make sure you have Python installed (Python 3.6 or higher recommended). Download it from [python.org](https://www.python.org/downloads/).  
+2. 📥 Clone the repository
 ```bash
 git clone https://github.com/SltnBM/GPA-calculator.git
 ```
-2. 📂 Navigate to the project directory
+3. 📂 Navigate to the project directory
 ```bash
 cd GPA-calculator
 ```
-3. ▶️ Run the script
+4. ▶️ Run the script
 ```bash
 python main.py
 ```
-4. 🖊️ Follow prompts:
+5. 🖊️ Follow prompts:
    - Enter number of courses
    - For each course: name, credits (can be decimal), and grade
    - Press `Ctrl+C` at any time to stop early and still get the summary
