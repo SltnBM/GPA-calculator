@@ -44,7 +44,7 @@ pip install rich
 ```
 
 ## 🚀 How to Use
-1. Make sure you have Python installed (Python 3.6 or higher recommended). Download it from [python.org](https://www.python.org/downloads/).  
+1. 🐍 Make sure you have Python installed (Python 3.6 or higher recommended). Download it from [python.org](https://www.python.org/downloads/).  
 2. 📥 Clone the repository
 ```bash
 git clone https://github.com/SltnBM/GPA-calculator.git
