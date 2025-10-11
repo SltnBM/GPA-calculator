@@ -10,6 +10,8 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 ![Requirements](https://img.shields.io/badge/requirements-rich%20v13%2B-green)
 ![Repo Size](https://img.shields.io/github/repo-size/SltnBM/GPA-calculator)
 
+---
+
 ## ✨ Features
 - 📝 Flexible input: manual, JSON, or CSV (per semester) with auto JSON sample.
 - 🛡️ Validation for missing/invalid grades & credits.
@@ -19,6 +21,7 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 - 🌈 Colorful table output using Rich.
 - 🔁 Recalculate without restart, graceful exit with partial summary.
 
+---
 
 ## 📋 Requirements
 1. 🐍 Python 3.6+
@@ -28,6 +31,8 @@ Install dependencies by running either:
 ```bash
 pip install -r requirements.txt
 ```
+
+---
 
 or manually
 ```bash
@@ -42,6 +47,8 @@ pip install rich
 ├── 🐍 main.py
 └── 📦 requirements.txt
 ```
+
+---
 
 ## 🚀 How to Use
 1. 🐍 Make sure you have Python installed (Python 3.6 or higher recommended). Download it from [python.org](https://www.python.org/downloads/).  
@@ -61,6 +68,8 @@ python main.py
    - Enter number of courses
    - For each course: name, credits (can be decimal), and grade
    - Press `Ctrl+C` at any time to stop early and still get the summary
+
+---
 
 ## 💻 Example Session
 ```bash
@@ -108,6 +117,8 @@ Destination file [gpa_summary.txt]: gpa_summary_example.txt
 Exported summary to TXT file: gpa_summary_example.txt
 ```
 
+---
+
 ## 📄 Using JSON Template
 Instead of manual input, you can use a JSON file like the example above to calculate your GPA automatically.
 
@@ -137,6 +148,8 @@ If the file is valid, the program will read the data and display the GPA summary
 - ⚠️ If the file doesn’t exist, the program will offer to create a sample template for you.
 - 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
+---
+
 ## 📂 Example JSON Template
 ```json
 [
@@ -145,6 +158,8 @@ If the file is valid, the program will read the data and display the GPA summary
   { "name": "Programming Fundamentals", "credits": 3, "grade": "AB" }
 ]
 ```
+
+---
 
 ## 📄 Using CSV Template
 Instead of manual input, you can use a CSV file like the example above to calculate your GPA automatically.
@@ -174,6 +189,8 @@ Path to CSV file: template_courses.csv
 - 🔢 Credits can be decimal values.
 - 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
+---
+
 ## 📂 Example CSV Template
 ```csv
 name,credits,grade
@@ -185,6 +202,8 @@ Database Systems,3,A
 Statistics,2,C
 ```
 
+---
+
 ## 📊 Grade Scale
 | Grade | Weight |
 |-------|--------|
@@ -195,6 +214,8 @@ Statistics,2,C
 | C     | 2.0    |
 | D     | 1.0    |
 | E     | 0.0    |
+
+---
 
 ## 🎯 GPA Classification
 The following table shows the numeric ranges used to classify the calculated GPA:
@@ -221,11 +242,17 @@ GPA = round( Σ (grade_weight × credits) / Σ credits , 2 )
 IPK = round( Σ (GPA_semester × semester_credits) / Σ semester_credits , 2 )
 ```
 
+---
+
 ## 🤝 Contributing
 Feel free to open issues or submit pull requests for improvements or bug fixes.
 
+---
+
 ## 📬 Connect With Me
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Sultan%20Badra-blue?logo=linkedin\&logoColor=white\&style=flat-square)](https://www.linkedin.com/in/sultan-badra)
+
+---
 
 ## 📜 License
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
