@@ -148,9 +148,7 @@ If the file is valid, the program will read the data and display the GPA summary
 - ⚠️ If the file doesn’t exist, the program will offer to create a sample template for you.
 - 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
----
-
-## 📂 Example JSON Template
+### 📂 Example JSON Template
 ```json
 [
   { "name": "Calculus", "credits": 3, "grade": "A" },
@@ -189,9 +187,7 @@ Path to CSV file: template_courses.csv
 - 🔢 Credits can be decimal values.
 - 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
----
-
-## 📂 Example CSV Template
+### 📂 Example CSV Template
 ```csv
 name,credits,grade
 Calculus,3,A
