@@ -32,12 +32,13 @@ Install dependencies by running either:
 pip install -r requirements.txt
 ```
 
----
-
 or manually
 ```bash
 pip install rich
 ```
+
+---
+
 ## 📁 Project Structure
 ```plaintext
 📂 GPA-calculator/
