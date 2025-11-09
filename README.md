@@ -13,19 +13,19 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 ---
 
 ## ✨ Features
-- 📝 Flexible input: manual, JSON, or CSV (per semester) with auto JSON sample.
-- 🛡️ Validation for missing/invalid grades & credits.
-- ➗ Weighted GPA calculation + classification.
-- 📚 Multi-semester support with per-semester & cumulative GPA.
-- 💾 Export to TXT, JSON, CSV, or all formats.
-- 🌈 Colorful table output using Rich.
-- 🔁 Recalculate without restart, graceful exit with partial summary.
+- Flexible input: manual, JSON, or CSV (per semester) with auto JSON sample.
+- Validation for missing/invalid grades & credits.
+- Weighted GPA calculation + classification.
+- Multi-semester support with per-semester & cumulative GPA.
+- Export to TXT, JSON, CSV, or all formats.
+- Colorful table output using Rich.
+- Recalculate without restart, graceful exit with partial summary.
 
 ---
 
 ## 📋 Requirements
-1. 🐍 Python 3.6+
-2. 📦 `Rich` package
+1. Python 3.6+
+2. `Rich` package
 
 Install dependencies by running either:
 ```bash
@@ -42,30 +42,30 @@ pip install rich
 ## 📁 Project Structure
 ```plaintext
 📂 GPA-calculator/
-├── 📄 LICENSE
-├── 📄 README.md
-├── 📄 courses.json
-├── 🐍 main.py
-└── 📦 requirements.txt
+├── LICENSE
+├── README.md
+├── courses.json
+├── main.py
+└── requirements.txt
 ```
 
 ---
 
 ## 🚀 How to Use
-1. 🐍 Make sure you have Python installed (Python 3.6 or higher recommended). Download it from [python.org](https://www.python.org/downloads/).  
-2. 📥 Clone the repository
+1. Make sure you have Python installed (Python 3.6 or higher recommended). Download it from [python.org](https://www.python.org/downloads/).  
+2. Clone the repository
 ```bash
 git clone https://github.com/SltnBM/GPA-calculator.git
 ```
-3. 📂 Navigate to the project directory
+3. Navigate to the project directory
 ```bash
 cd GPA-calculator
 ```
-4. ▶️ Run the script
+4. Run the script
 ```bash
 python main.py
 ```
-5. 🖊️ Follow prompts:
+5. Follow prompts:
    - Enter number of courses
    - For each course: name, credits (can be decimal), and grade
    - Press `Ctrl+C` at any time to stop early and still get the summary
@@ -123,16 +123,16 @@ Exported summary to TXT file: gpa_summary_example.txt
 ## 📄 Using JSON Template
 Instead of manual input, you can use a JSON file like the example above to calculate your GPA automatically.
 
-1️⃣ **Edit the Template**  
+1️. **Edit the Template**  
 
 A ready-to-use `courses.json` file is already provided in the repository. You can edit it to match your own courses, credits, and grades.
 
-2️⃣ **Run the Script** 
+2️. **Run the Script** 
    ```bash
    python main.py
    ```
 
-3️⃣ **Choose JSON Option** 
+3️. **Choose JSON Option** 
    ```bash
    Choose input method:
    1) JSON file
@@ -141,13 +141,13 @@ A ready-to-use `courses.json` file is already provided in the repository. You ca
    Path to JSON file: courses.json
    ```
 
-4️⃣ **Get Results**  
+4️. **Get Results**  
 If the file is valid, the program will read the data and display the GPA summary immediately.
 
 💡 **Tips**:
-- 🆓 The file name can be anything, as long as it ends with `.json` and follows the correct format.
-- ⚠️ If the file doesn’t exist, the program will offer to create a sample template for you.
-- 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
+- The file name can be anything, as long as it ends with `.json` and follows the correct format.
+- If the file doesn’t exist, the program will offer to create a sample template for you.
+- Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
 ### 📂 Example JSON Template
 ```json
@@ -163,16 +163,16 @@ If the file is valid, the program will read the data and display the GPA summary
 ## 📄 Using CSV Template
 Instead of manual input, you can use a CSV file like the example above to calculate your GPA automatically.
 
-1️⃣ **Edit the Template**
+1️. **Edit the Template**
 
 A ready-to-use `template_courses.csv` file is provided in the repository. You can edit it to match your own courses, credits, and grades.
 
-2️⃣ **Run the Script** 
+2️. **Run the Script** 
    ```bash
    python main.py
    ```
 
-3️⃣ **Choose CSV Options**
+3️. **Choose CSV Options**
 ```bash
 Choose input method:
 1) JSON file
@@ -183,10 +183,10 @@ Path to CSV file: template_courses.csv
 ```
 
 💡 **Tips**:
-- 🏷️ CSV must have the exact column names: name, credits, grade.
-- 🆓 The file name can be anything, as long as it ends with `.csv` and follows the correct format.
-- 🔢 Credits can be decimal values.
-- 🎯 Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
+- CSV must have the exact column names: name, credits, grade.
+- The file name can be anything, as long as it ends with `.csv` and follows the correct format.
+- Credits can be decimal values.
+- Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
 ### 📂 Example CSV Template
 ```csv
