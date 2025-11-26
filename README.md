@@ -1,4 +1,4 @@
-# 🎓 GPA Calculator CLI
+# GPA Calculator CLI
 A simple Python CLI tool to calculate GPA based on course credits and grades.
 
 <p align="center">
@@ -12,7 +12,7 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 
 ---
 
-## ✨ Features
+## Features
 - Flexible input: manual, JSON, or CSV (per semester) with auto JSON sample.
 - Validation for missing/invalid grades & credits.
 - Weighted GPA calculation + classification.
@@ -23,7 +23,7 @@ A simple Python CLI tool to calculate GPA based on course credits and grades.
 
 ---
 
-## 📋 Requirements
+## Requirements
 1. Python 3.6+
 2. `Rich` package
 
@@ -39,9 +39,9 @@ pip install rich
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 ```plaintext
-📂 GPA-calculator/
+GPA-calculator/
 ├── LICENSE
 ├── README.md
 ├── courses.json
@@ -51,7 +51,7 @@ pip install rich
 
 ---
 
-## 🚀 How to Use
+## How to Use
 1. Make sure you have Python installed (Python 3.6 or higher recommended). Download it from [python.org](https://www.python.org/downloads/).  
 2. Clone the repository
 ```bash
@@ -72,7 +72,7 @@ python main.py
 
 ---
 
-## 💻 Example Session
+## Example Session
 ```bash
 ===== GPA CALCULATOR =====
 Do you want to calculate for multiple semesters?
@@ -120,7 +120,7 @@ Exported summary to TXT file: gpa_summary_example.txt
 
 ---
 
-## 📄 Using JSON Template
+## Using JSON Template
 Instead of manual input, you can use a JSON file like the example above to calculate your GPA automatically.
 
 1️. **Edit the Template**  
@@ -144,12 +144,12 @@ A ready-to-use `courses.json` file is already provided in the repository. You ca
 4️. **Get Results**  
 If the file is valid, the program will read the data and display the GPA summary immediately.
 
-💡 **Tips**:
+**Tips**:
 - The file name can be anything, as long as it ends with `.json` and follows the correct format.
 - If the file doesn’t exist, the program will offer to create a sample template for you.
 - Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
-### 📂 Example JSON Template
+### Example JSON Template
 ```json
 [
   { "name": "Calculus", "credits": 3, "grade": "A" },
@@ -160,7 +160,7 @@ If the file is valid, the program will read the data and display the GPA summary
 
 ---
 
-## 📄 Using CSV Template
+## Using CSV Template
 Instead of manual input, you can use a CSV file like the example above to calculate your GPA automatically.
 
 1️. **Edit the Template**
@@ -182,13 +182,13 @@ Enter 1, 2, or 3: 3
 Path to CSV file: template_courses.csv
 ```
 
-💡 **Tips**:
+**Tips**:
 - CSV must have the exact column names: name, credits, grade.
 - The file name can be anything, as long as it ends with `.csv` and follows the correct format.
 - Credits can be decimal values.
 - Grades must be one of: `A`, `AB`, `B`, `BC`, `C`, `D`, `E` (case-insensitive).
 
-### 📂 Example CSV Template
+### Example CSV Template
 ```csv
 name,credits,grade
 Calculus,3,A
@@ -214,7 +214,7 @@ Statistics,2,C
 
 ---
 
-## 🎯 GPA Classification
+## GPA Classification
 The following table shows the numeric ranges used to classify the calculated GPA:
 
 | Category  | GPA Range (inclusive) |
@@ -229,7 +229,7 @@ The following table shows the numeric ranges used to classify the calculated GPA
 
 ---
 
-## 🧮 Calculation Formula
+## Calculation Formula
 **Grade weights:** `A=4.0, AB=3.5, B=3.0, BC=2.5, C=2.0, D=1.0, E=0.0` (case-insensitive).
 **Semester GPA**
 ```
@@ -243,15 +243,15 @@ IPK = round( Σ (GPA_semester × semester_credits) / Σ semester_credits , 2 )
 
 ---
 
-## 🤝 Contributing
+## Contributing
 Feel free to open issues or submit pull requests for improvements or bug fixes.
 
 ---
 
-## 📬 Connect With Me
+## Connect With Me
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Sultan%20Badra-blue?logo=linkedin\&logoColor=white\&style=flat-square)](https://www.linkedin.com/in/sultan-badra)
 
 ---
 
-## 📜 License
+## License
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
