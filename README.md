@@ -201,7 +201,7 @@ Statistics,2,C
 
 ---
 
-## 📊 Grade Scale
+## Grade Scale
 | Grade | Weight |
 |-------|--------|
 | A     | 4.0    |
